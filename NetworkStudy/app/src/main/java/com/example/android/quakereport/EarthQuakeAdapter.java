@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -91,14 +92,21 @@ public class EarthQuakeAdapter extends ArrayAdapter<EarthQuake> {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent myIntent = null;
+                Uri earthquakeUri = Uri.parse(currentEQ.getLink());
+                myIntent = new Intent(Intent.ACTION_VIEW, earthquakeUri);
+
+                /*
                 try {
-                    myIntent = new Intent().parseUri(currentEQ.getLink(), Intent.URI_INTENT_SCHEME);
+//                    myIntent = new Intent().parseUri(currentEQ.getLink(), Intent.URI_INTENT_SCHEME);
+
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
+                */
                 if (myIntent != null) {
                     context.startActivity(myIntent);
                 }
+
 
             }
         });
